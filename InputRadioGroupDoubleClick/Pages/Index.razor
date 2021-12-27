@@ -1,0 +1,40 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<em>
+To Reproduce the problem,
+Type anything into the <b>Name</b> field.
+and without tabbing out or pressing enter immediatly click on a not selected radio value
+</em>
+<br />
+
+<EditForm Model=api>
+    Name: <InputText @bind-Value="api.Name" />
+    <br/>
+    <InputRadioGroup @bind-Value="api.Version">
+        <InputRadio Value=Test.V1/>1<br>
+        <InputRadio Value=Test.V2/>2<br>
+        <InputRadio Value=Test.V3/>3<br>
+    </InputRadioGroup>
+</EditForm>
+
+Version=@api.Version
+Name:@api.Name
+
+@code {
+    ApiInfo api = new ApiInfo();
+
+    class ApiInfo
+    {
+        public string? Name { get; set; }
+        public Test Version { get; set; }
+    }
+
+    enum Test
+    {
+        V1,
+        V2,
+        V3
+    }
+}
